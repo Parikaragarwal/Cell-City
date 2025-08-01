@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Zap, Wifi, Camera, Check, Tag, ShoppingCart, Heart } from 'lucide-react';
+import { Zap, Wifi, Camera, Check, Tag, Heart,Mic,Headphones,Move3D,Shield,Watch,Gamepad2,Package,CheckCircle } from 'lucide-react';
 import { useSelector } from 'react-redux';
 import appwriteService from '../../Appwrite/service';
 import config from '../../config';
@@ -10,7 +10,14 @@ const AccessoriesProductCard = ({ product, compact = false }) => {
   const [isFavorited, setIsFavorited] = useState(false);
   const isAdmin = useSelector((state) => state.auth.isAdmin);
   const collectionId= config.accessoriesCollectionId;
+  const altimg="https://media.istockphoto.com/id/1396814518/vector/image-coming-soon-no-photo-no-thumbnail-image-available-vector-illustration.jpg?s=612x612&w=0&k=20&c=hnh2OZgQGhf0b46-J2z7aHbIWwq8HNlSDaNp2wn_iko=";
 
+  // ADD THIS MAP HERE
+  const iconMap = {
+      Zap: Zap, Wifi: Wifi, Camera: Camera, Mic: Mic, Headphones: Headphones,
+      Shield: Shield, Move3D: Move3D, Watch: Watch, Gamepad2: Gamepad2,
+      Package: Package, Default: CheckCircle,
+  };
 
   const {
     id,
@@ -97,7 +104,7 @@ const AccessoriesProductCard = ({ product, compact = false }) => {
           {/* Product Image */}
           <div className="relative w-full h-full bg-gradient-to-br from-gray-800 to-gray-900 overflow-hidden rounded-t-2xl">
             <img
-              src={image}
+              src={image || altimg}
               alt={`${brand} ${name}`}
               className={`w-full h-full object-cover transition-all duration-700 group-hover:scale-110 ${
                 imageLoaded ? 'opacity-100' : 'opacity-0'
@@ -166,7 +173,7 @@ const AccessoriesProductCard = ({ product, compact = false }) => {
           {visibleFeatures.length > 0 && (
             <div className="flex items-center gap-1 flex-wrap">
               {visibleFeatures.map((feature, index) => {
-                const IconComponent = feature.icon || Wifi;
+                const IconComponent = iconMap[feature.icon] || iconMap.Default;
                 return (
                   <div
                     key={index}

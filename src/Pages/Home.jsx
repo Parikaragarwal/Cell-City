@@ -10,6 +10,7 @@ import appwriteService from '../Appwrite/service';
 import config from '../config';
 import dummyBestsellers from '../Demos/DemoBestsellers';
 import dummyCarousel from '../Demos/DemoCarousel';
+import { CgProductHunt } from 'react-icons/cg';
 
 const Home = () => {
   const isAdmin = useSelector((state) => state.auth.isAdmin);
@@ -106,7 +107,7 @@ useEffect(() => {
     <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
       {bestsellers.map((product, index) => (
         <div 
-          key={product.$id} 
+          key={product.$id || index}
           className="group relative transform transition-all duration-500 hover:scale-105 hover:-translate-y-2"
           style={{ 
             animationDelay: `${index * 200}ms`,

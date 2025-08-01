@@ -131,3 +131,42 @@ export const getMobiles = async () => {
     throw error;
   }
 };
+export const getAccessories = async () => {
+  try {
+    const response = await appwriteService.listDocuments(
+      config.accessoriesCollectionId // Use your accessories collection ID from config
+    );
+
+    if (!response || !response.documents) {
+        throw new Error("Failed to fetch accessories or documents are empty.");
+    }
+
+    // Parse the JSON strings back into arrays for the UI
+    const parsedAccessories = response.documents.map(accessory => {
+      const colors = JSON.parse(accessory.colors || '[]');
+      const features = JSON.parse(accessory.features || '[]');
+
+      return {
+        id: accessory.$id,
+        brand: accessory.brand,
+        name: accessory.name,
+        type: accessory.type,
+        image: accessory.image,
+        price: accessory.price,
+        originalPrice: accessory.originalPrice,
+        colors,
+        features,
+        shopData: { // Reconstruct shopData for the card
+            stockStatus: accessory.stockStatus,
+            hasOffer: accessory.hasOffer,
+        }
+      };
+    });
+
+    return parsedAccessories;
+
+  } catch (error) {
+    console.error("Appwrite service :: getAccessories :: error", error);
+    throw error; // Re-throw the error for React Query
+  }
+};

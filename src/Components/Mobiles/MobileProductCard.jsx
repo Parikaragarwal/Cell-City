@@ -140,8 +140,8 @@ const MobileProductCard = ({ product,preview=false, compact = false }) => {
           <div className="space-y-1"> {/* Reduced space-y */}
             <div className="flex items-center gap-2">
               <span className={`${priceTextSize} font-bold text-emerald-400`}>₹{price?price:specs.price}</span>
-              {originalPrice?originalPrice:specs.originalPrice && (
-                <span className={`${detailTextSize} text-gray-500 line-through`}>₹{specs.originalPrice}</span>
+              {originalPrice && (
+                <span className={`${detailTextSize} text-gray-500 line-through`}>₹{originalPrice}</span>
               )}
             </div>
             <div className={`inline-flex items-center gap-1 px-2 py-1 rounded-full ${detailTextSize} font-medium ${stockStatus.color} ${stockStatus.bg === 'bg-emerald-50' ? 'bg-emerald-900/30' : stockStatus.bg === 'bg-amber-50' ? 'bg-amber-900/30' : 'bg-red-900/30'}`}>

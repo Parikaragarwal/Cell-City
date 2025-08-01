@@ -1,14 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState ,useMemo} from "react";
 import { Filter, X } from "lucide-react";
 import AccessoriesProductCard from "../Components/Accessories/AccessoriesProductCard";
-import demoAccessories from "../Demos/DemoAccessories";
 import AccessoriesSearchBar from "../Components/Accessories/AccessoriesSearchBar";
 import AccessoriesFilterContent from "../Components/Accessories/AccessoriesFilterContent";
 import useIsMobile from "../Hooks/useIsMobile";
 import { useSelector } from "react-redux";
+import { useQuery } from '@tanstack/react-query';
+import { getAccessories } from "../Appwrite/service"; // Make sure path is correct
+import Loader from "../Components/Loader"; 
+
 
 const Accessories = () => {
-  const [accessories, setAccessories] = useState([]);
   const [filtered, setFiltered] = useState([]);
   const [priceRange, setPriceRange] = useState([0, 50000]);
   const [selectedTypes, setSelectedTypes] = useState([]);
@@ -18,10 +20,16 @@ const Accessories = () => {
   const isMobile = useIsMobile();
   const isAdmin = useSelector((state) => state.auth.isAdmin);
 
-  useEffect(() => {
-    const inStock = demoAccessories.filter((p) => p.stockStatus !== "out-of-stock");
-    setAccessories(inStock);
-  }, []);
+const { data: fetchedAccessories, isLoading, isError, error } = useQuery({
+    queryKey: ['accessories'],
+    queryFn: getAccessories
+  });
+
+const accessories = useMemo(() => {
+    if (!fetchedAccessories) return [];
+    return fetchedAccessories.filter((p) => p.shopData.stockStatus !== "out-of-stock");
+  }, [fetchedAccessories]);
+
 
   useEffect(() => {
     const baseProducts = isSearchActive ? searchResults : accessories;
@@ -52,6 +60,22 @@ const Accessories = () => {
   };
 
   const activeFiltersCount = selectedTypes.length;
+  if (isLoading) {
+    return (
+      <div className="flex justify-center items-center h-96">
+        <Loader text="Fetching Accessories..." />
+      </div>
+    );
+  }
+
+  if (isError) {
+    return (
+      <div className="text-center text-red-400 p-8 bg-red-900/20 rounded-lg">
+        <h2 className="text-xl font-bold mb-2">Error Fetching Data</h2>
+        <p>{error.message}</p>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900 relative overflow-hidden">

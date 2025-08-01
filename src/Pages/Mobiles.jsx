@@ -11,7 +11,6 @@ import { getMobiles } from "../Appwrite/service";
 import Loader from "../Components/Loader"; 
 
  // defaults to 640px breakpoint
-const BRANDS = ["Apple", "Samsung", "OnePlus", "Vivo", "Infinix", "Nothing"];
 
 const Mobiles = () => {
   const [filtered, setFiltered] = useState([]);
@@ -24,6 +23,7 @@ const Mobiles = () => {
   const [isSearchActive, setIsSearchActive] = useState(false);
   const isMobile = useIsMobile();
   const isAdmin = useSelector((state) => state.auth.isAdmin);
+  const BRANDS = [...new Set(filtered.map(p => p.brand))].sort();
   const { data: fetchedMobiles, isLoading, isError, error } = useQuery({
     queryKey: ['mobiles'],
     queryFn: getMobiles

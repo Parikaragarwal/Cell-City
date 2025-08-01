@@ -11,10 +11,16 @@ const Header = () => {
   const dispatch = useDispatch();
   const isAdmin = useSelector((state) => state.auth.isAdmin);
 
-const  handleLogout = () => {
-    dispatch(logoutThunk());
+const handleLogout = async () => {
+  const result = await dispatch(logoutThunk());
+
+  if (logoutThunk.fulfilled.match(result)) {
     window.location.href = "/admin/login";
-  };
+  } else {
+    alert("Logout failed.");
+  }
+};
+
 
 
   useEffect(() => {

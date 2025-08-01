@@ -15,6 +15,8 @@ import AddBestSeller from './Pages/Admin/Add/AddBestSeller';
 import EditBestSeller from './Pages/Admin/Edit/EditBestSeller';
 import AddMobile from './Pages/Admin/Add/AddMobile';
 import EditMobile from './Pages/Admin/Edit/EditMobile';
+import AddAccessory from './Pages/Admin/Add/AddAccessory';
+import EditAccessory from './Pages/Admin/Edit/EditAccessory';
 
 function App() {
 
@@ -39,7 +41,7 @@ function App() {
           } />
           <Route path="/admin/edit/accessories/:id" element={
               <ProtectedRoute>
-                {/* <EditAccessories /> */}
+                <EditAccessory />
               </ProtectedRoute>
           } />
           <Route path="/admin/edit/electronics/${id}" element={
@@ -66,7 +68,7 @@ function App() {
           } />
           <Route path="/admin/add/accessories" element={
               <ProtectedRoute>
-                {/* <EditAccessories /> */}
+                <AddAccessory />
               </ProtectedRoute>
           } />
           <Route path="/admin/add/electronics" element={
