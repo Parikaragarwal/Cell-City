@@ -2,7 +2,8 @@ import BestSellerCard from '../Components/BestSellerCard';
 import { useEffect,useState } from 'react';
 import { Carousel } from 'react-responsive-carousel';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import SpaceHero from '../Components/SpaceHero';
+// import SpaceHero from '../Components/FestivalHero';
+import FestivalHero from '../Components/FestivalHero';
 import WhatWeOffer from '../Components/WhatWeOffer';
 import ShopContactLocation from '../Components/ShopContactLocation';
 import { useSelector } from 'react-redux';
@@ -66,7 +67,7 @@ useEffect(() => {
 
   return (
     <div className="w-full min-h-screen bg-gradient-to-br from-blue-50 via-slate-100 to-gray-200 text-gray-800">
-      <SpaceHero />
+      <FestivalHero/>
 
       <WhatWeOffer />
 

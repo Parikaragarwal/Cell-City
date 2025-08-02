@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import appwriteService from '../../Appwrite/service';
 import config from '../../config';
 
-const ElectronicsProductCard = ({ product, compact = false }) => {
+const ElectronicsProductCard = ({ product,preview=false, compact = false }) => {
   const [imageLoaded, setImageLoaded] = useState(false);
   const [isFavorited, setIsFavorited] = useState(false);
   const isAdmin = useSelector((state) => state.auth.isAdmin);
@@ -13,20 +13,20 @@ const ElectronicsProductCard = ({ product, compact = false }) => {
 
 
 
-  const {
-    id,
-    brand,
-    name,
-    image,
-    price,
-    originalPrice,
-    features = [],
-    specs = [],
-    type,
-    stockStatus = "in-stock",
-    hasOffer = false
-  } = product;
+const {
+  id,
+  brand,
+  name,
+  image,
+  price,
+  originalPrice,
+  features = [],
+  specs = [],
+  type,
+  shopData = {} // Destructure shopData
+} = product;
 
+const { stockStatus = "in-stock", hasOffer = false } = shopData;
   const getStockStatusDisplay = () => {
     switch (stockStatus) {
       case 'in-stock':
@@ -109,33 +109,32 @@ const ElectronicsProductCard = ({ product, compact = false }) => {
 
           {/* Specs */}
           {specs.length > 0 && (
-            <div className="flex items-center gap-1 flex-wrap">
-              {specs.slice(0, compact ? 1 : 2).map((spec, i) => (
-                <div
-                  key={i}
-                  className={`px-1.5 py-0.5 bg-gray-800 border border-gray-700 rounded-full ${detailTextSize} text-gray-300 hover:bg-emerald-900/50 hover:text-emerald-400 hover:border-emerald-500 transition-all duration-300`}
-                >
-                  {spec.text}
-                </div>
-              ))}
-            </div>
-          )}
+  <div className="flex items-center gap-1 flex-wrap">
+    {specs.slice(0, compact ? 1 : 2).map((spec, i) => (
+      <div
+        key={i}
+        className={`px-1.5 py-0.5 bg-gray-800 border border-gray-700 rounded-full ${detailTextSize} text-gray-300`}
+      >
+        {/* This now correctly displays the key and value */}
+        <span className="font-semibold text-gray-100">{spec.key}:</span> {spec.value}
+      </div>
+    ))}
+  </div>
+)}
+
 
           {/* Features with icons */}
 {features.length > 0 && (
   <div className="flex items-center gap-1 flex-wrap">
-    {features.slice(0, compact ? 1 : 2).map((feature, index) => {
-      const Icon = feature.icon;
-      return (
-        <div
-          key={index}
-          className={`flex items-center gap-1 px-1.5 py-0.5 bg-gray-800 border border-gray-700 rounded-full ${detailTextSize} text-gray-300 hover:bg-emerald-900/50 hover:text-emerald-400 hover:border-emerald-500 transition-all duration-300`}
-        >
-          {Icon && <Icon size={iconSize} />}
-          {!compact && feature.text}
-        </div>
-      );
-    })}
+    {features.slice(0, compact ? 2 : 3).map((feature, index) => (
+      <div
+        key={index}
+        className={`flex items-center gap-1 px-1.5 py-0.5 bg-gray-800 border border-gray-700 rounded-full ${detailTextSize} text-gray-300`}
+      >
+        {/* This now only renders the feature text */}
+        {feature.text}
+      </div>
+    ))}
   </div>
 )}
 
@@ -155,7 +154,7 @@ const ElectronicsProductCard = ({ product, compact = false }) => {
           </div>
         </div>
       </div>
-{isAdmin && (
+{(isAdmin && !preview) && (
   <div className="mt-2 flex justify-center gap-3">
     <button
       onClick={async () => {

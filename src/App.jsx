@@ -17,7 +17,8 @@ import AddMobile from './Pages/Admin/Add/AddMobile';
 import EditMobile from './Pages/Admin/Edit/EditMobile';
 import AddAccessory from './Pages/Admin/Add/AddAccessory';
 import EditAccessory from './Pages/Admin/Edit/EditAccessory';
-
+import AddElectronic from './Pages/Admin/Add/AddElectronic';
+import EditElectronic from './Pages/Admin/Edit/EditElectronic';
 function App() {
 
 
@@ -44,9 +45,9 @@ function App() {
                 <EditAccessory />
               </ProtectedRoute>
           } />
-          <Route path="/admin/edit/electronics/${id}" element={
+          <Route path="/admin/edit/electronics/:id" element={
               <ProtectedRoute>
-                {/* <EditElectronics /> */}
+                <EditElectronic />
               </ProtectedRoute>
           } />
           <Route path="/admin/edit/carousel/:id" element={
@@ -73,7 +74,7 @@ function App() {
           } />
           <Route path="/admin/add/electronics" element={
               <ProtectedRoute>
-                {/* <EditElectronics /> */}
+                <AddElectronic />
               </ProtectedRoute>
           } />
           <Route path="/admin/add/carousel" element={

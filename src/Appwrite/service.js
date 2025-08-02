@@ -170,3 +170,42 @@ export const getAccessories = async () => {
     throw error; // Re-throw the error for React Query
   }
 };
+
+export const getElectronics = async () => {
+  try {
+    const response = await appwriteService.listDocuments(
+      config.electronicsCollectionId // Use your electronics collection ID
+    );
+
+    if (!response || !response.documents) {
+      throw new Error("Failed to fetch electronics or documents are empty.");
+    }
+
+    const parsedElectronics = response.documents.map(item => {
+      const specs = JSON.parse(item.specs || '{}');
+      const features = JSON.parse(item.features || '[]');
+
+      return {
+        id: item.$id,
+        brand: item.brand,
+        name: item.name,
+        image: item.image,
+        price: item.price,
+        originalPrice: item.originalPrice,
+        type: item.type,
+        specs,
+        features,
+        shopData: {
+          stockStatus: item.stockStatus,
+          hasOffer: item.hasOffer,
+        }
+      };
+    });
+
+    return parsedElectronics;
+
+  } catch (error) {
+    console.error("Appwrite service :: getElectronics :: error", error);
+    throw error;
+  }
+};

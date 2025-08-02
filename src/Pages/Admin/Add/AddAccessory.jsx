@@ -207,7 +207,7 @@ const AddAccessory = () => {
                     <div className="lg:col-span-1">
                         <div className="sticky top-8 bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-6 shadow-2xl">
                             <h3 className="text-lg font-bold text-white mb-4 text-center">Live Preview</h3>
-                            <AccessoryProductCard product={previewData} />
+                            <AccessoryProductCard preview={true} product={previewData} />
                         </div>
                     </div>
                 </div>

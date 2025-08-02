@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import appwriteService from '../../Appwrite/service';
 import config from '../../config';
 
-const AccessoriesProductCard = ({ product, compact = false }) => {
+const AccessoriesProductCard = ({ product,preview=false, compact = false }) => {
   const [hoveredColor, setHoveredColor] = useState(null);
   const [imageLoaded, setImageLoaded] = useState(false);
   const [isFavorited, setIsFavorited] = useState(false);
@@ -214,7 +214,7 @@ const AccessoriesProductCard = ({ product, compact = false }) => {
       {/* Floating Animation Dots */}
       <div className="absolute -top-1 -right-1 w-3 h-3 bg-emerald-400 rounded-full opacity-0 group-hover:opacity-100 animate-ping"></div>
       <div className="absolute -bottom-1 -left-1 w-2 h-2 bg-emerald-300 rounded-full opacity-0 group-hover:opacity-100 animate-ping" style={{ animationDelay: '300ms' }}></div>
-      {isAdmin && (
+      {(isAdmin && !preview) && (
   <div className="mt-2 flex justify-center gap-3">
     <button
       onClick={async () => {

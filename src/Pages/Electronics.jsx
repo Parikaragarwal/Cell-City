@@ -1,12 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState ,useMemo} from "react";
 import { Filter, X } from "lucide-react";
 import ElectronicsProductCard from "../Components/Electronics/ElectronicsProductCard";
-import demoElectronics from "../Demos/DemoElectronics";
 import ElectronicsSearchBar from "../Components/Electronics/ElectronicsSearchBar";
 import ElectronicsFilterContent from "../Components/Electronics/ElectronicsFilterContent";
 import useIsMobile from "../Hooks/useIsMobile";
 import { Zap, Shield, Headphones, Package } from "lucide-react";
 import { useSelector } from "react-redux";
+import { useQuery } from '@tanstack/react-query';
+import { getElectronics } from "../Appwrite/service"; // Adjust path if needed
+import Loader from "../Components/Loader";
 
 const CATEGORY_MAP = {
     "Smart TV": { label: "Smart TVs", icon: Zap },
@@ -17,7 +19,6 @@ const CATEGORY_MAP = {
 
 
 const Electronics = () => {
-const [electronics, setElectronics] = useState([]);
 const [filtered, setFiltered] = useState([]);
 const [priceRange, setPriceRange] = useState([0, 150000]);
 const [selectedTypes, setSelectedTypes] = useState([]);
@@ -26,11 +27,16 @@ const [isSearchActive, setIsSearchActive] = useState(false);
 const [showFilters, setShowFilters] = useState(false);
 const isMobile = useIsMobile();
 const isAdmin = useSelector((state) => state.auth.isAdmin);
+    // --- FETCH DATA WITH REACT QUERY ---
+    const { data: fetchedElectronics, isLoading, isError, error } = useQuery({
+        queryKey: ['electronics'],
+        queryFn: getElectronics
+    });
+    const electronics = useMemo(() => {
+        if (!fetchedElectronics) return [];
+        return fetchedElectronics.filter((p) => p.shopData.stockStatus !== "out-of-stock");
+    }, [fetchedElectronics]);
 
-useEffect(() => {
-    const inStock = demoElectronics.filter((p) => p.stockStatus !== "out-of-stock");
-    setElectronics(inStock);
-}, []);
 useEffect(() => {
     const baseProducts = isSearchActive ? searchResults : electronics;
     let result = [...baseProducts];
@@ -62,6 +68,24 @@ const handleSearchResults = (results) => {
 };
 
 const activeFiltersCount = selectedTypes.length;
+
+if (isLoading) {
+        return (
+            <div className="flex justify-center items-center h-96">
+                <Loader text="Fetching Electronics..." />
+            </div>
+        );
+    }
+
+    if (isError) {
+        return (
+            <div className="text-center text-red-400 p-8 bg-red-900/20 rounded-lg">
+                <h2 className="text-xl font-bold mb-2">Error Fetching Data</h2>
+                <p>{error.message}</p>
+            </div>
+        );
+    }
+
 
 return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900 relative overflow-hidden">

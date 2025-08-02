@@ -7,7 +7,7 @@ import useIsMobile from "../Hooks/useIsMobile";
 import { useSelector } from "react-redux";
 import { useQuery } from '@tanstack/react-query';
 import { getAccessories } from "../Appwrite/service"; // Make sure path is correct
-import Loader from "../Components/Loader"; 
+import Loader from "../Components/Loader";
 
 
 const Accessories = () => {
