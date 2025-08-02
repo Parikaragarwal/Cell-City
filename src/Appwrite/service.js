@@ -8,8 +8,6 @@ class AppwriteService {
     databases;
 
     constructor() {
-        console.log("Appwrite URL:", config.appwriteUrl);
-        console.log("Project ID:", config.appwriteProjectId);
 
         this.client
             .setEndpoint(config.appwriteUrl)
