@@ -28,14 +28,21 @@ export class AuthService {
     }
 
     // CHECK LOGGED-IN ADMIN
-    async getCurrentUser() {
-        try {
-            return await this.account.get();
-        } catch (error) {
-            console.error("Get User Error:", error);
-            return null;
+   async getCurrentUser() {
+    try {
+        const user = await this.account.get();
+        return user;
+    } catch (error) {
+        if (error.code === 401) {
+            // Guest user – no worries
+            console.log("Welcome Guest");
+        } else {
+            // Something else went wrong
+            console.error("Unexpected error while getting user:", error);
         }
+        return null;
     }
+}
 
     // LOGOUT
     async logout() {
