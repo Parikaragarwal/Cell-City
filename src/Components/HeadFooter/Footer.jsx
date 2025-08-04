@@ -24,7 +24,7 @@ const Footer = () => {
         <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/10 to-blue-500/10"></div>
         <div className="absolute inset-0" style={{
           backgroundImage: `radial-gradient(circle at 25% 25%, rgba(16, 185, 129, 0.1) 0%, transparent 50%),
-                           radial-gradient(circle at 75% 75%, rgba(59, 130, 246, 0.1) 0%, transparent 50%)`
+                          radial-gradient(circle at 75% 75%, rgba(59, 130, 246, 0.1) 0%, transparent 50%)`
         }}></div>
       </div>
       
@@ -38,8 +38,8 @@ const Footer = () => {
               {/* Logo with fallback */}
               <div className="w-12 h-12 bg-gradient-to-br from-emerald-400 to-emerald-600 rounded-full flex items-center justify-center shadow-lg">
                 <img 
-                  src="/Logo.jpeg" 
-                  alt="Cell City Logo" 
+                  src="/Images/Logo.jpeg" 
+                  alt="Cell City Logo"
                   className="w-10 h-10 rounded-full object-cover"
                   onError={(e) => {
                     e.target.style.display = 'none';
@@ -52,7 +52,7 @@ const Footer = () => {
                 <h3 className="text-xl font-bold bg-gradient-to-r from-emerald-400 to-blue-400 bg-clip-text text-transparent">
                   Cell City
                 </h3>
-                <p className="text-sm text-gray-400">Communications</p>
+                <p className="text-sm text-gray-400">Telecom</p>
               </div>
             </div>
             <p className="text-gray-400 text-sm leading-relaxed mb-4">

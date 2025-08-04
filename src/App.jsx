@@ -19,6 +19,8 @@ import AddAccessory from './Pages/Admin/Add/AddAccessory';
 import EditAccessory from './Pages/Admin/Edit/EditAccessory';
 import AddElectronic from './Pages/Admin/Add/AddElectronic';
 import EditElectronic from './Pages/Admin/Edit/EditElectronic';
+import Repairs from "./Pages/Repairs"
+
 function App() {
 
   
@@ -35,6 +37,7 @@ function App() {
             <Route path="/mobiles" element={<Mobiles />} />
             <Route path="/accessories" element={<Accessories />} />
             <Route path="/electronics" element={<Electronics />} />
+            <Route path="/repairs" element={<Repairs />} />
 
           <Route path="/admin/edit/mobiles/:id" element={
               <ProtectedRoute>

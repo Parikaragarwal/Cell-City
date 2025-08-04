@@ -56,7 +56,7 @@ const handleLogout = async () => {
                 <div className="w-12 h-12 rounded-full bg-gradient-to-br from-emerald-400 to-emerald-600 p-0.5 shadow-lg shadow-emerald-500/25 group-hover:shadow-emerald-400/40 transition-all duration-300">
                   <div className="w-full h-full rounded-full bg-black flex items-center justify-center overflow-hidden">
                     <img 
-                      src="/Logo.jpeg" 
+                      src="/Images/Logo.jpeg"
                       alt="Cell City Logo" 
                       className="w-10 h-10 rounded-full object-cover transition-transform duration-300 group-hover:scale-110"
                       onError={(e) => {
@@ -76,7 +76,7 @@ const handleLogout = async () => {
                   Cell City
                 </Link>
                 <p className="text-xs text-gray-400 -mt-1 group-hover:text-emerald-300 transition-colors duration-300">
-                  Communications
+                  Telecom
                 </p>
               </div>
             </div>
