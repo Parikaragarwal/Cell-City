@@ -1,5 +1,6 @@
 import { Smartphone, Headphones, Tv } from 'lucide-react';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate hook
 
 // Mock Button component for demo
 const Button = ({ children, variant = "primary", className = "", onClick }) => (
@@ -18,6 +19,7 @@ const Button = ({ children, variant = "primary", className = "", onClick }) => (
 const WhatWeOffer = () => {
 const [hoveredCard, setHoveredCard] = useState(null);
 const [touchedCard, setTouchedCard] = useState(null);
+const navigate = useNavigate(); // Initialize the hook
 
 const categories = [
     {
@@ -57,7 +59,7 @@ const categories = [
 ];
 
 const handleCardClick = (link) => {
-    console.log(`Navigate to: ${link}`);
+    navigate(link); // Use the navigate function
 };
 
 // Mobile touch handlers - simplified approach
@@ -79,7 +81,7 @@ const handleMobileCardTap = (cardId, link) => {
 return (
     <div className="w-full py-24 px-6 sm:px-12 lg:px-16 bg-gradient-to-br from-gray-50 to-white relative overflow-hidden">
       {/* Background Decorations */}
-    <div className="absolute inset-0 opacity-5">
+    <div className="absolute inset-0 opacity-5 pointer-events-none">
         <div className="absolute top-20 left-10 w-72 h-72 bg-emerald-500 rounded-full blur-3xl"></div>
         <div className="absolute bottom-20 right-10 w-96 h-96 bg-blue-500 rounded-full blur-3xl"></div>
         <div className="absolute top-1/2 left-1/3 w-64 h-64 bg-purple-500 rounded-full blur-3xl"></div>

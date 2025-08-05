@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react"
+import { useNavigate } from "react-router-dom"
 
 const FestivalHero = () => {
   const [isVisible, setIsVisible] = useState(false)
+  const navigate = useNavigate() // Use the useNavigate hook
 
   useEffect(() => {
     const timer = setTimeout(() => setIsVisible(true), 100)
@@ -100,8 +102,8 @@ const FestivalHero = () => {
         FREE GOODIES
       </div>
 
-      {/* Main Content */}
-      <div className="relative z-20 flex items-center justify-center h-full px-4 sm:px-12 pt-16 sm:pt-20">
+      {/* Main Content - This needs a higher z-index */}
+      <div className="relative z-30 flex items-center justify-center h-full px-4 sm:px-12 pt-16 sm:pt-20">
         <div className="text-center text-white max-w-4xl">
           {/* Shop Name - Balanced glow */}
           <h3
@@ -163,10 +165,16 @@ const FestivalHero = () => {
             className={`flex flex-col sm:flex-row justify-center items-center gap-6 transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
             style={{ transitionDelay: "1s" }}
           >
-            <button className="bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white font-black py-4 px-8 rounded-full shadow-2xl transition-all hover:scale-110 hover:shadow-emerald-500/50 text-base sm:text-lg border-2 border-white/20 animate-glow">
+            <button
+                onClick={() => navigate("/accessories")}
+                className="bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white font-black py-4 px-8 rounded-full shadow-2xl transition-all hover:scale-110 hover:shadow-emerald-500/50 text-base sm:text-lg border-2 border-white/20 animate-glow"
+            >
               🔥 Explore Devices
             </button>
-            <button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-black py-4 px-8 rounded-full shadow-2xl transition-all hover:scale-110 hover:shadow-blue-500/50 text-base sm:text-lg border-2 border-white/20 animate-glow">
+            <button
+                onClick={() => navigate("/mobiles")}
+                className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-black py-4 px-8 rounded-full shadow-2xl transition-all hover:scale-110 hover:shadow-blue-500/50 text-base sm:text-lg border-2 border-white/20 animate-glow"
+            >
               📱 View All Phones
             </button>
           </div>

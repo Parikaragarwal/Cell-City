@@ -92,9 +92,9 @@ const Footer = () => {
                 <FaTools className="mr-3 opacity-0 group-hover:opacity-100 transition-opacity" size={12} />
                 Repairs
               </a>
-              <a href="/services" className="flex items-center text-gray-400 hover:text-emerald-400 transition-colors duration-300 group">
+              <a href="/about" className="flex items-center text-gray-400 hover:text-emerald-400 transition-colors duration-300 group">
                 <span className="w-2 h-2 bg-emerald-400 rounded-full mr-3 opacity-0 group-hover:opacity-100 transition-opacity"></span>
-                Services
+                About Us
               </a>
               <a href="/contact" className="flex items-center text-gray-400 hover:text-emerald-400 transition-colors duration-300 group">
                 <FaAddressCard className="mr-3 opacity-0 group-hover:opacity-100 transition-opacity" size={12} />
@@ -114,8 +114,8 @@ const Footer = () => {
                 <div className="w-8 h-8 bg-gray-800 group-hover:bg-emerald-600 rounded-full flex items-center justify-center mr-3 transition-colors duration-300">
                   <FaPhone size={12} />
                 </div>
-                <a href="tel:+911234567890" className="text-gray-400 hover:text-emerald-400 transition-colors duration-300">
-                  +91 12345 67890
+                <a href="tel:+917895431497" className="text-gray-400 hover:text-emerald-400 transition-colors duration-300">
+                  +91 78954 31497
                 </a>
               </div>
               
@@ -123,8 +123,8 @@ const Footer = () => {
                 <div className="w-8 h-8 bg-gray-800 group-hover:bg-emerald-600 rounded-full flex items-center justify-center mr-3 transition-colors duration-300">
                   <FaEnvelope size={12} />
                 </div>
-                <a href="mailto:info@cellcity.com" className="text-gray-400 hover:text-emerald-400 transition-colors duration-300">
-                  info@cellcity.com
+                <a href="mailto:cellcityagra@gmail.com" className="text-gray-400 hover:text-emerald-400 transition-colors duration-300">
+                  cellcityagra@gmail.com
                 </a>
               </div>
               
@@ -138,8 +138,9 @@ const Footer = () => {
                   rel="noopener noreferrer"
                   className="text-gray-400 hover:text-emerald-400 transition-colors duration-300"
                 >
-                  123 Tech Street, Digital Plaza<br />
-                  Agra, Uttar Pradesh
+                UG-4A ,Kailash Plaza,Shah Market<br/> 
+                Mahatma Gandhi Road<br />
+                Agra, Uttar Pradesh 282002
                 </a>
               </div>
             </div>
@@ -153,23 +154,19 @@ const Footer = () => {
             </h4>
             <div className="space-y-2 text-sm">
               <div className="flex justify-between">
-                <span className="text-gray-400">Mon - Fri:</span>
-                <span className="text-white font-medium">9:00 AM - 8:00 PM</span>
+                <span className="text-gray-400">Wed - Mon:</span>
+                <span className="text-white font-medium">11:00 AM - 10:00 PM</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-gray-400">Saturday:</span>
-                <span className="text-white font-medium">10:00 AM - 6:00 PM</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-gray-400">Sunday:</span>
-                <span className="text-white font-medium">11:00 AM - 4:00 PM</span>
+                <span className="text-gray-400">Tuesday:</span>
+                <span className="text-white font-medium">OFF</span>
               </div>
             </div>
             
             {/* Call to Action */}
             <div className="mt-6 p-4 bg-gradient-to-r from-emerald-600/20 to-blue-600/20 rounded-lg border border-emerald-500/20">
               <p className="text-sm text-gray-300 mb-2">Need urgent repair?</p>
-              <a href="tel:+911234567890" className="inline-flex items-center text-emerald-400 hover:text-emerald-300 font-medium text-sm transition-colors">
+              <a href="tel:+917895431497" className="inline-flex items-center text-emerald-400 hover:text-emerald-300 font-medium text-sm transition-colors">
                 <FaPhone className="mr-2" size={12} />
                 Call Now
               </a>
@@ -183,7 +180,7 @@ const Footer = () => {
         {/* Bottom Bar */}
         <div className="flex flex-col md:flex-row justify-between items-center text-sm text-gray-400">
           <div className="flex items-center mb-4 md:mb-0">
-            <span>© {new Date().getFullYear()} Cell City Communications. All rights reserved.</span>
+            <span>© {new Date().getFullYear()} Cell City Telecom. All rights reserved.</span>
           </div>
           
           <div className="flex items-center space-x-4">
