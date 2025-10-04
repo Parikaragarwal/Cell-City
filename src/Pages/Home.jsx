@@ -2,7 +2,7 @@ import BestSellerCard from '../Components/BestSellerCard';
 import { useEffect,useState } from 'react';
 import { Carousel } from 'react-responsive-carousel';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-// import SpaceHero from '../Components/FestivalHero';
+import BasicBanner from "../Components/BasicBanner"
 import FestivalHero from '../Components/FestivalHero';
 import WhatWeOffer from '../Components/WhatWeOffer';
 import ShopContactLocation from '../Components/ShopContactLocation';
