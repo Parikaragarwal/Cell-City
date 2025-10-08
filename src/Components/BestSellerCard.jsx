@@ -2,13 +2,13 @@
 
 import { MemoryStickIcon, HardDrive, Pencil, Trash2 } from "lucide-react" // Using Lucide React icons
 import { useSelector } from "react-redux" // Assuming Redux setup is external and correct
-// import appwriteService from "../Appwrite/service"; // Backend logic, kept commented as per previous instruction
-// import config from "../config"; // Backend logic, kept commented as per previous instruction
+import appwriteService from "../Appwrite/service"; // Backend logic, kept commented as per previous instruction
+import config from "../config"; // Backend logic, kept commented as per previous instruction
 
 const BestSellerCard = ({ product, isPreview = false }) => {
   const { $id, name, image, price, ram, storage, tag } = product
   const isAdmin = useSelector((state) => state.auth.isAdmin)
-  // const collectionId = config.bestsellersCollectionId; // Kept for context, but not directly used in JSX styling
+  const collectionId = config.bestsellersCollectionId; // Kept for context, but not directly used in JSX styling
 
   return (
     <div className="group relative bg-gradient-to-br from-zinc-900 to-zinc-800 text-white rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 flex flex-col w-full h-[380px] border border-zinc-700 hover:border-zinc-600 transform hover:scale-[1.02] hover:z-10">
@@ -70,15 +70,13 @@ const BestSellerCard = ({ product, isPreview = false }) => {
               onClick={async () => {
                 const confirmDelete = window.confirm("Delete this product?")
                 if (confirmDelete) {
-                  // This part is kept as-is, assuming appwriteService is correctly imported and available
-                  // const success = await appwriteService.deleteDocument(collectionId, $id);
-                  // if (success) {
-                  //   alert("Product deleted successfully.");
-                  //   window.location.reload();
-                  // } else {
-                  //   alert("Failed to delete. Please try again.");
-                  // }
-                  alert("Delete functionality is simulated in preview.") // Placeholder for preview
+                  const success = await appwriteService.deleteDocument(collectionId, $id);
+                  if (success) {
+                    alert("Product deleted successfully.");
+                    window.location.reload();
+                  } else {
+                    alert("Failed to delete. Please try again.");
+                  } 
                 }
               }}
               className="inline-flex items-center justify-center bg-red-600 hover:bg-red-700 text-white text-xs px-3 py-1.5 rounded-md shadow-md transition-colors duration-300 transform hover:scale-105"
@@ -87,8 +85,7 @@ const BestSellerCard = ({ product, isPreview = false }) => {
             </button>
             <button
               onClick={() => {
-                // window.location.href = `/admin/edit/bestseller/${$id}`; // Kept as-is
-                alert(`Navigate to edit product: ${$id}`) // Placeholder for preview
+                window.location.href = `/admin/edit/bestseller/${$id}`; // Kept as-is
               }}
               className="inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white text-xs px-3 py-1.5 rounded-md shadow-md transition-colors duration-300 transform hover:scale-105"
             >
